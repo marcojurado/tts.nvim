@@ -1,6 +1,6 @@
 # Text-to-speech in Neovim
 
-Read your visual selection using multiple TTS backends including [edge-tts](https://github.com/rany2/edge-tts), [Piper](https://github.com/rhasspy/piper), and [OpenAI TTS](https://platform.openai.com/docs/guides/text-to-speech).
+Read your visual selection using multiple TTS backends including [edge-tts](https://github.com/rany2/edge-tts), [Piper](https://github.com/OHF-Voice/piper1-gpl), and [OpenAI TTS](https://platform.openai.com/docs/guides/text-to-speech).
 
 "TTS" command reads the visual selection using `ffplay`, while "TTSFile" outputs the audio to a file.
 
@@ -36,7 +36,7 @@ yay -S python-edge-tts
 ```bash
 pip install piper-tts
 ```
-Or install from source: [Piper Installation](https://github.com/rhasspy/piper#installation)
+Or install from source: [Piper Installation](https://github.com/OHF-Voice/piper1-gpl)
 
 ### OpenAI TTS
 - openai Python package
@@ -485,7 +485,7 @@ zu-ZA-ThandoNeural
 
 ### Piper - Available Models
 
-Piper models need to be downloaded before use. See [Piper documentation](https://github.com/rhasspy/piper/blob/master/VOICES.md) for a full list of available voices.
+Piper models need to be downloaded before use. See [Piper documentation](https://github.com/OHF-Voice/piper1-gpl) for a full list of available voices.
 
 Common models:
 - `en_US-lessac-medium` (default, good quality)
