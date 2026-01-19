@@ -29,6 +29,17 @@ M.backends.edge = {
         if to_file then
             table.insert(args, to_file)
         end
+
+        -- Pass an optional edge.command for parity/future use
+        if config.edge and config.edge.command then
+            table.insert(args, config.edge.command)
+        end
+
+        -- Pass optional player command (applies to all backends)
+        if config.player and config.player.command then
+            table.insert(args, config.player.command)
+        end
+
         return args
     end,
 
@@ -73,6 +84,18 @@ M.backends.piper = {
             to_file = to_file:gsub("%.mp3$", ".wav")
             table.insert(args, to_file)
         end
+
+        -- If user provided a custom piper command in config (string), pass it as an extra arg.
+        -- Example: config.piper = { command = "piper download_voices" }
+        if config.piper and config.piper.command then
+            table.insert(args, config.piper.command)
+        end
+
+        -- Pass optional player command (applies to all backends)
+        if config.player and config.player.command then
+            table.insert(args, config.player.command)
+        end
+
         return args
     end,
 
@@ -97,6 +120,10 @@ M.backends.openai = {
         local args = { voice, model, tostring(config.speed), nvim_data_dir }
         if to_file then
             table.insert(args, to_file)
+        end
+        -- Pass optional player command
+        if config.player and config.player.command then
+            table.insert(args, config.player.command)
         end
         return args
     end,
