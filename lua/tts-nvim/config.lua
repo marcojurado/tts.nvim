@@ -38,6 +38,25 @@ M.opts = {
 
     -- Piper configuration
     piper_model = "en_US-lessac-medium", -- Piper model to use
+    -- Optional: override the command used to run piper CLI actions (string).
+    -- If nil the plugin will use: `python3 -m piper.download_voices --download-dir ... <model>`
+    -- Example: piper = { command = "piper download_voices" }
+    piper = {
+        command = nil,
+    },
+
+    -- Edge configuration (present for parity; edge backend currently uses Python API)
+    -- Example: edge = { command = "edge-tts" }  (not used by default API implementation)
+    edge = {
+        command = nil,
+    },
+
+    -- Player configuration: override the base player command string.
+    -- The plugin will split this string and append backend-specific stdin args.
+    -- Example: player = { command = "ffplay" } or player = { command = "mpv --no-terminal" }
+    player = {
+        command = nil,
+    },
 
     -- OpenAI TTS configuration
     -- Note: API key must be set via OPENAI_API_KEY environment variable

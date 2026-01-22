@@ -25,6 +25,38 @@ M.tts_to_file = function()
     M.job:send(text .. EOF)
 end
 
+-- Programmatic API: speak a given text string (streams to audio/playback)
+M.tts_text = function(text)
+    if not text or text == "" then
+        return
+    end
+
+    local text_processor = require("tts-nvim.text_processor")
+    local conf = require("tts-nvim.config")
+    local filetype = vim.bo.filetype
+    local processed = text_processor.process_text(text, filetype, conf.opts)
+
+    -- S for stream
+    local EOF = "S\x1A"
+    M.job:send(processed .. EOF)
+end
+
+-- Programmatic API: save a given text string to an audio file (mirrors TTSFile)
+M.tts_text_to_file = function(text)
+    if not text or text == "" then
+        return
+    end
+
+    local text_processor = require("tts-nvim.text_processor")
+    local conf = require("tts-nvim.config")
+    local filetype = vim.bo.filetype
+    local processed = text_processor.process_text(text, filetype, conf.opts)
+
+    -- F for file
+    local EOF = "F\x1A"
+    M.job:send(processed .. EOF)
+end
+
 M.tts_set_language = function(args)
     local lang = args.fargs[1]
     local backend_name = config.opts.backend
