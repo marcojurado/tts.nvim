@@ -57,6 +57,9 @@ def listen_to_stdin():
     ex = concurrent.futures.ThreadPoolExecutor()
     while True:
         character = sys.stdin.read(1)
+        if not character:  # stdin closed (e.g., Neovim exited)
+            ex.shutdown(wait=False)
+            break
         if character == EOF:
             send_to_file = text[-1] == "F"
             text = text[:-1]
