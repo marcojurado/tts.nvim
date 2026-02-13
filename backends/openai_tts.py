@@ -3,6 +3,7 @@ import concurrent.futures
 import os
 import subprocess
 import sys
+import shlex
 import tempfile
 
 import common
@@ -13,6 +14,7 @@ model = sys.argv[2]
 speed = float(sys.argv[3])
 nvim_data_dir = sys.argv[4]
 to_file = sys.argv[5] if len(sys.argv) > 5 else None
+player_command = sys.argv[6] if len(sys.argv) > 6 else None
 
 # Get API key from environment variable
 api_key = os.getenv("OPENAI_API_KEY")
@@ -40,9 +42,9 @@ def generate_audio(text, send_to_file=False):
             # Stream to ffplay
             common.kill_existing_process(pid_file)
 
-            # Play the audio with ffplay
+            # Play the audio with player
             ffplay_proc = subprocess.Popen(
-                ["ffplay", "-i", "-", "-autoexit"],
+                shlex.split(player_command) if player_command else ["ffplay", "-i", "-", "-autoexit"],
                 stdin=subprocess.PIPE,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,

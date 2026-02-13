@@ -50,9 +50,9 @@ async def stream_audio(text):
     # Build player command (player_command overrides base player executable)
     if player_command:
         try:
-            player_cmd = shlex.split(player_command) + ["-i", "-", "-autoexit"]
+            player_cmd = shlex.split(player_command)
         except Exception:
-            player_cmd = [player_command, "-i", "-", "-autoexit"]
+            player_cmd = [player_command]
     else:
         player_cmd = ["ffplay", "-i", "-", "-autoexit"]
 

@@ -65,15 +65,10 @@ def stream_audio(text, send_to_file=False):
 
         # Build player command
         if player_command:
-            player_cmd = shlex.split(player_command) + [
-                "-f",
-                "s16le",
-                "-ar",
-                "22050",
-                "-i",
-                "-",
-                "-autoexit",
-            ]
+            try:
+                player_cmd = shlex.split(player_command)
+            except Exception:
+                player_cmd = [player_command]
         else:
             player_cmd = [
                 "ffplay",
