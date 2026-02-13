@@ -13,8 +13,8 @@ voice = sys.argv[1]
 model = sys.argv[2]
 speed = float(sys.argv[3])
 nvim_data_dir = sys.argv[4]
-to_file = sys.argv[5] if len(sys.argv) > 5 else None
-player_command = sys.argv[6] if len(sys.argv) > 6 else None
+to_file = sys.argv[5] if len(sys.argv) > 5 and sys.argv[5] else None
+player_command = sys.argv[6] if len(sys.argv) > 6 and sys.argv[6] else None
 
 # Get API key from environment variable
 api_key = os.getenv("OPENAI_API_KEY")

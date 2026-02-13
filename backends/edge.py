@@ -26,18 +26,18 @@ if len(remaining) == 1:
     if remaining[0].endswith((".wav", ".mp3")) or os.path.sep in remaining[0]:
         to_file = remaining[0]
     else:
-        edge_command = remaining[0]
+        edge_command = remaining[0] or None
 elif len(remaining) == 2:
     if remaining[0].endswith((".wav", ".mp3")) or os.path.sep in remaining[0]:
         to_file = remaining[0]
-        edge_command = remaining[1]
+        edge_command = remaining[1] or None
     else:
-        edge_command = remaining[0]
-        player_command = remaining[1]
+        edge_command = remaining[0] or None
+        player_command = remaining[1] or None
 elif len(remaining) >= 3:
-    to_file = remaining[0]
-    edge_command = remaining[1]
-    player_command = remaining[2]
+    to_file = remaining[0] or None
+    edge_command = remaining[1] or None
+    player_command = remaining[2] or None
 
 pid_file = os.path.join(nvim_data_dir, "pid.txt")
 

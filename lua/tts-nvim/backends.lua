@@ -33,6 +33,8 @@ M.backends.edge = {
         -- Pass an optional edge.command for parity/future use
         if config.edge and config.edge.command then
             table.insert(args, config.edge.command)
+        elseif config.player and config.player.command then
+            table.insert(args, "")  -- placeholder to keep player.command in correct position
         end
 
         -- Pass optional player command (applies to all backends)
@@ -89,6 +91,8 @@ M.backends.piper = {
         -- Example: config.piper = { command = "piper download_voices" }
         if config.piper and config.piper.command then
             table.insert(args, config.piper.command)
+        elseif config.player and config.player.command then
+            table.insert(args, "")  -- placeholder to keep player.command in correct position
         end
 
         -- Pass optional player command (applies to all backends)
@@ -120,6 +124,8 @@ M.backends.openai = {
         local args = { voice, model, tostring(config.speed), nvim_data_dir }
         if to_file then
             table.insert(args, to_file)
+        elseif config.player and config.player.command then
+            table.insert(args, "")  -- placeholder to keep player.command in correct position
         end
         -- Pass optional player command
         if config.player and config.player.command then
